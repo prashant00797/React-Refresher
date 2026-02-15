@@ -1,0 +1,24 @@
+{
+  "name": "react-refresher",
+  "version": "1.0.0",
+  "description": "refreshing react skills",
+  "homepage": "https://github.com/prashant00797/React-Refresher#readme",
+  "bugs": {
+    "url": "https://github.com/prashant00797/React-Refresher/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prashant00797/React-Refresher.git"
+  },
+  "license": "ISC",
+  "author": "prashant",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "parcel": "^2.16.4",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}
