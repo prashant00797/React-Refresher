@@ -34,21 +34,21 @@ Refreshing React Skills
 
    ---> A react functional component is basically a function that return a piece of JSX (React Element)
 
-   ---><pre> export const App = () => (
+   ---> export const App = () => (
      <div>
        <h1>asdas</h1>
      </div>
-   );</pre>
+   );
    is equilavant to
 
-/\*export const App = () => {
+export const App = () => {
 return (
 
 <div>
 <h1>Test</h1>
 </div>
 );
-};*/
+};
 
 crux - if not returning just use open and close brackets () other wise curly braces followed by return
 
@@ -67,4 +67,34 @@ crux - if not returning just use open and close brackets () other wise curly bra
 .
 .
 
-4. --->CODE PUSH
+4. ---> BUILDING A FOOD ORDERING APP
+
+---> Component Structuring
+1--Header
+1.1--Logo
+1.2--Nav Items
+2--Body
+2.1--Search
+2.2--RestaurantContainer
+2.2.1--RestaurantCards
+3--Footer
+
+--->inline style attribute in JSX is passed as an JS object
+
+---> passing an argument to a function = passing props to a component. so props = arguments
+
+--->Config Driven UI which i have worked on
+
+---> JS DOUBTS - 1) anything you print inside a HTML element JS automatically converts it to a STRING. Hence that array got converted to a string 2) Option Chaining in JS - resData?.data - basically if data exists then access it or otherwise return undefined. Its totally different from conditional operators
+
+-->The key property is important while using map() because it helps React uniquely identify list items during reconciliation, so it can efficiently update the DOM. That’s why React shows a warning in the console when a key is missing.
+
+It’s better not to use the index as a key because if the order of items changes, the index changes too. When that happens, React loses the identity of components, which can lead to incorrect UI updates or state bugs.
+
+Therefore, we should use a stable and unique key (like an id) that does not change between renders.
+
+React doesn’t care about uniqueness once — it cares about stability across re-renders.
+---------------------For now not building the project here only maintaining the notes and functionality----------------------------------
+
+---> render multiple items using map technique
+be carefull while use return structure see code
