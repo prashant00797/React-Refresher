@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 //Understanding hooks in the component
 
@@ -21,7 +21,7 @@ const Filter = ({ infoList }) => {
   };
 
   return (
-    <div style={{ backgroundColor: "rebeccapurple" }}>
+    <div style={{ backgroundColor: "rebeccapurple", display: "none" }}>
       {filerData.map((item) => {
         return (
           <div

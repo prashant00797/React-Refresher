@@ -6,3 +6,7 @@ export const infoList = [
   { id: 5, name: "Kabir", age: 25, place: "Hyderabad" },
   { id: 6, name: "Ananya", age: 21, place: "Chennai" },
 ];
+
+export const BASE_URL = "https://namastedev.com/api/v1/";
+export const URL_GET_LIST = "listRestaurants";
+export const FILTER_LIST = `listRestaurantMenu/`;

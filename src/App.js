@@ -1,6 +1,9 @@
+import Card from "./components/Card";
 import { Dummy } from "./components/Dummy";
 import Filter from "./components/Filter";
 import { Iterator, Iterator2 } from "./components/Iterator";
+import { Toggle } from "./components/Toggle";
+
 import { infoList } from "./components/utils";
 
 const Title = () => <h1>React Refresher</h1>;
@@ -11,7 +14,10 @@ export const App = () => {
 
   return (
     <div>
-      <h1 style={{ backgroundColor: "red" }}>Test {random}</h1>
+      <div>
+        <h1 style={{ backgroundColor: "red" }}>Test {random}</h1>
+        <Toggle />
+      </div>
       {Title()} {/* Ultimate its a js arrow function and we are invoking it */}
       {/* <Title></Title> All this three syntax mean the same  */}
       {/* <Title /> */}
@@ -21,6 +27,7 @@ export const App = () => {
       {/* Understanding the role of map in rendering multiple data in an single component - Iterator Js */}
       <Iterator2 infoList={infoList} />
       <Filter infoList={infoList} />
+      <Card />
     </div>
   );
 };

@@ -104,7 +104,7 @@ be carefull while use return structure see code
 .
 .
 
-# 5 ---> File Structuring, HOOKS,EXPORT IMPORTS
+# 5 ---> File Structuring, HOOKS,EXPORT IMPORTS, REACT FUNDAMENTALS
 
 ---> File structuring is not compulsory but its convenient to have a simple folder structure
 
@@ -175,3 +175,97 @@ SOME IMPORTANT TERMS - see gpt created a chat + refernce react documentations
 4)VIRTUAL DOM
 
 --->React uses the concept of Virtual DOM and implements reconciliation internally. React Fiber is the modern engine that performs reconciliation in a more advanced and efficient way.
+.
+.
+.
+.
+
+# 6. Architecture, USE EFFECT USAGE, UNDERSTANDING MORE ABOUT USE STATE AND RENDER CONTROL, TOGGLE FUNCTIONALITY, SEARCH FUNCTIONALITY(Most Imp)
+
+---> Monolithic architecture vs Micro service architecture
+---> Seperation of concerns and Single Responsibility Principle is the core of Micro Service architecture
+--->Each microservice runs on its specific port… All these ports are then mapped to a domain name.
+
+---> Approaches for loading a page =
+
+1. User Page loads -> make the api call -> render page
+2. User Page loads -> render the initial UI(UI like Shimmer) -> Make an API call -> Update
+
+The second approach is better way as the user experience will be much better in that
+
+##### USE EFFECT HOOK
+
+1. The body component renders and after that the use effect hooks gets rendered. It consists of a callback function and an dependency array
+
+2. Hence to get the data for the first time after the component is rendered we use the useffect hook
+   .
+   .
+   .
+   .
+   .
+
+   ---> Fetch api is given by the browser not js itself.
+
+3. Ours browser (say chrome) restricts or block us (localhost) from one origin to another origin i.e, calling an outside api from our localhost.
+4. Shimmer UI is a good practice of lazy loading.
+5. Concept of conditional rendering is used in shimmer UI
+
+6. # const with useState and components
+
+   🔹 Why we use const?
+
+const prevents reassignment of the variable.
+
+It does NOT prevent React from updating state.
+
+🔹 How state updates work?
+
+We never change state directly.
+
+We use the setter function (setCount()).
+
+When state updates:
+
+React re-runs the component.
+
+A new variable is created with the new value.
+
+🧠 Key Line:
+
+State doesn’t change — component re-runs with new value.
+
+📌 2️⃣ const with Component
+const Body = () => { ... }
+
+🔹 What const means here?
+
+The function reference cannot be reassigned.
+
+The component itself can run multiple times.
+
+🔹 On re-render:
+
+React calls the same function again.
+
+It does NOT modify the function.
+
+It just executes it again.
+
+🧠 Key Line:
+
+Component is constant, execution is not.
+
+useState -> Setter function reference stays same -> New state value & new variable per render changes
+Component -> Function reference stays same -> Function execution & internal variables changes
+
+# V.V.V.IMP THE SEARCH FUNCTIONALITY
+
+1. Usage of controlled component means assign value attribute of an input field to a state variable i.e., now react controls it behaviour and without an onchange handler we wont be able to type in it
+
+2. React renders everytime on onchange event as the state variable changes but only efficient changes occur by comparing the old VDOM vs the new VDOM and only updates whats necessary.
+
+3. REMEMBER THIS FLOW FOR A SIMPLE SEARCHING ---
+   ----> First create a separate state which contains the same data as of the data of the main component which is rendering. example - in my case i kept the food main api data as a copy in filtered data state also and on useffect we update each with the initial api data
+   ----> Second its very important that search will occur on all the data present so basically our original state which has the api data which never changes. example - cardata state in my code
+   ---->Third, rendering of the component will always be based on the filtered data not the original data because the component has a feature of being changed as its attached to a filter function so wee need to update it continously hence rendering must be with a state of filtered data not overall data basic logic. eg -- used filtered state data to view components and carddata to filterout data which never changes and keeps all the data of the api that we get on first call.
+   ----> Small logic of includes must be know to match string and why "prashant.includes("") = true" this logics must be known as on empty string entire list is rendered as `Empty string is considered present inside every string, so .includes("") always returns true.` and filter passes all data thus we seach every card.
