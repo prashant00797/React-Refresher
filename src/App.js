@@ -1,5 +1,5 @@
-import { Dummy } from "./Dummy";
-import { Iterator } from "./Iterator";
+import { Dummy } from "./components/Dummy";
+import { Iterator } from "./components/Iterator";
 
 const Title = () => <h1>React Refresher</h1>;
 
@@ -26,3 +26,5 @@ export const App = () => {
     </div>
   );
 };
+
+export default App;

@@ -98,3 +98,47 @@ React doesn’t care about uniqueness once — it cares about stability across r
 
 ---> render multiple items using map technique
 be carefull while use return structure see code
+.
+.
+.
+.
+.
+
+# 5 ---> File Structuring, HOOKS,EXPORT IMPORTS
+
+---> File structuring is not compulsory but its convenient to have a simple folder structure
+
+---> js or jsx file extension doesnt impact the code.
+
+---> basic convention use `export default <component>` and then import it. Also while importing its not necessary to write the extension of the file in the relative path `.components/<component>.js` or `.components/<component>`
+
+---> no constants or harcoded data in main component file. Better to create a separate file like industry standards utils or common etc. Keep the constants name in caps with snake case(eg- BASE_URL).
+
+##### EXPORT IMPORTS
+
+---> named export = exporting multiple files
+default export = by default the file would export that particular thing only. Only one default in a file.
+
+--> name export then while importing use {curly braces} while importing and exact name must match. Reason for curly braces is inside js it happens like -
+
+what we wrote -
+export const Dummy = () => {};
+export const Test = () => {};
+
+internally -
+// module object
+{
+Dummy: ...,
+Test: ...
+}
+So when importing: You are saying: "Give me the property named Dummy from that module.
+
+--->default export then no curly braces normal importing and also can be renamed.No {} because you’re not selecting a property —
+you’re getting the default value.
+
+--> it’s JavaScript module syntax.
+
+export default Component --- import Component from "path"
+export const Component --- import {Component} from "path"
+
+##### HOOKS
