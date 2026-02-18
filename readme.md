@@ -142,3 +142,36 @@ export default Component --- import Component from "path"
 export const Component --- import {Component} from "path"
 
 ##### HOOKS
+
+---> event handlers expects a callaback function.
+---> Hooks = normal js functions.
+---> state variable for re rendering -> use state(). its contains one variable and a variable Update function. we can set by default value in () this.
+
+-->>> WHENVER A STATE VARIABLE CHANGES REACT RE-RENDERS THE COMPONENT
+The core power of REACT IS EFFECTIVE DOM MANUPULATION which is like updating a component with state variables and all.
+REMEMEBER THIS LINE - REACTS KEEP SYNC BETWEEN THE UI LAYER AND DATA LAYER VERY EFFIECIENTLY
+
+--> Virtual DOM existed way before React was developed. Virtual DOM existed → React implemented its own reconciliation → later rewrote it as Fiber
+
+--> React is fasst because of this only efficient dom manipulation by using the above alogrithm.
+
+--> The creation of the second function in useState is hence create to START THE TRIGGER for the diffing algorithm
+
+--> Dont get confused with the useState syntax which is basically array destructing
+const [state, setState] = useState();
+or const arr = useState()
+==> const [state, setState] = arr;
+or
+const state = arr[0];
+const setState = arr[1];
+`basically normal js code`
+.
+.
+.
+SOME IMPORTANT TERMS - see gpt created a chat + refernce react documentations
+1)REACT RECONCILIATION ALGORITHM -
+2)DIFFING ALGORITHM
+3)REACT FIBER
+4)VIRTUAL DOM
+
+--->React uses the concept of Virtual DOM and implements reconciliation internally. React Fiber is the modern engine that performs reconciliation in a more advanced and efficient way.

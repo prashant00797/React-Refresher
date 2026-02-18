@@ -4,7 +4,7 @@ export const Dummy = (
   //   destruction syntax.
   const { name, arr } = args;
   return (
-    <div>
+    <div style={{ display: "none" }}>
       {/* <h1>testing props : {args.name}</h1> */}
       <h1>testing props : {name}</h1>
       <h1>{arr.join(",")}</h1>
