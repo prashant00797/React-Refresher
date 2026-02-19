@@ -9,11 +9,8 @@ const Filter = ({ infoList }) => {
   const [filerData, setfilterData] = useState(infoList);
 
   const handleFilter = () => {
-    console.log("w");
-
     const ageFilteredData = infoList.filter((item) => item.age > 23); //use infoList rather than filtered data
     setfilterData(ageFilteredData);
-    console.log(ageFilteredData);
   };
 
   const handleReset = () => {

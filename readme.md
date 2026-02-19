@@ -269,3 +269,155 @@ Component -> Function reference stays same -> Function execution & internal vari
    ----> Second its very important that search will occur on all the data present so basically our original state which has the api data which never changes. example - cardata state in my code
    ---->Third, rendering of the component will always be based on the filtered data not the original data because the component has a feature of being changed as its attached to a filter function so wee need to update it continously hence rendering must be with a state of filtered data not overall data basic logic. eg -- used filtered state data to view components and carddata to filterout data which never changes and keeps all the data of the api that we get on first call.
    ----> Small logic of includes must be know to match string and why "prashant.includes("") = true" this logics must be known as on empty string entire list is rendered as `Empty string is considered present inside every string, so .includes("") always returns true.` and filter passes all data thus we seach every card.
+   .
+   .
+   .
+   .
+   .
+
+7) # SOME MORE POINTS OF USE EFFECT & USE STATE, ABOUT ROUTING - static & dynamic both
+   1. Useffect runs after the component is rendered. The dependency array changes its behaviour.
+      if [] is empty than it will run only once. if no dependency array then it will run every time the component renders. [statevar] if it has something than it will render when there is updation in the dependency array variable.
+   2. Dont use ustate outside the body. Its used to create local state variable inside a function and always create on top since at the end the end of the day js executes line by line.
+   3. Dont use conditional sentence like if/else or loops with useState and useEffect. Also dont declare them inside a separate function.
+
+#### ROUTING
+
+1. Install react router not react router dom and import from react router
+2. create approutes with the help of browser router which is an array of object taking mainly path, element, eroor element , children routes(if any)
+3. Use Router Provider now instead of the app component and pass the approutes to it with attribute routes = {appRoutes}
+4. errorElement is used to handle when / any path doesnt matches.
+5. useRouteEroor hook provided by router to get Error Response object which has more details about the error like status code, error message and all. Use it inside the error component
+6. Children routes are created inside the the parent route.
+7. Outlet helps in replacing the element when linked is click
+
+FINAL STEPS
+🔹 React Router Sequence (Nested Routing)
+1️⃣ Define Route Tree
+
+Use createBrowserRouter to create a route hierarchy.
+
+const router = createBrowserRouter([
+{
+path: "/",
+element: <App />,
+children: [
+{ index: true, element: <Card /> },
+{ path: "deals", element: <Deals /> },
+],
+},
+]);
+
+This creates a route tree, not just an array.
+
+2️⃣ Provide Router Context
+
+Wrap app with:
+
+<RouterProvider router={router} />
+
+This:
+
+Enables route matching
+
+Tracks URL changes
+
+Powers <Link>, <Outlet>, navigation
+
+Without this → routing won’t work.
+
+3️⃣ Parent Route = Layout Route
+
+If a route has children, it becomes a layout route.
+
+Example:
+
+{
+path: "/",
+element: <App />,
+children: [...]
+}
+
+App stays visible while children change.
+
+4️⃣ Use <Outlet /> Inside Parent
+function App() {
+return (
+<>
+<Navbar />
+<Outlet />
+</>
+);
+}
+
+<Outlet /> is the placeholder where matched child renders.
+
+5️⃣ Default Child Route
+
+For default / child:
+
+{ index: true, element: <Card /> }
+
+Do NOT use path: "/" inside children.
+
+6️⃣ Child Route Rules
+
+For nested routes:
+
+❌ path: "/deals"
+
+✅ path: "deals"
+
+No leading slash.
+
+7️⃣ Navigation Flow (What Happens Internally)
+
+When URL changes (via <Link>):
+
+RouterProvider detects URL change
+
+Matches route tree
+
+Renders parent element
+
+<Outlet /> renders matched child
+
+🔹 Visual Flow
+
+For /:
+
+App
+├── Navbar
+└── Card (index: true)
+
+For /deals:
+
+App
+├── Navbar
+└── Deals
+
+That’s the complete routing sequence — clean and correct.
+
+8. Router provider at root level as React context flows downward.So placing it at the top ensures:Every component inside the app can access routing.If you placed it lower: Only components inside that subtree would get routing.
+   .
+   .
+   .
+   .
+
+#### SINGLE PAGE APPLICATION (SPA)
+
+--> Its basically the process of make a page not reload when routing occurs. It takes the help of CLIENT SIDE ROUTING.
+Routing can be of two types client side as above in which we just interchange among pages and can make network calls but without changing the entire page and another one is server side routing where an http request is made to the backend and an response comes in with respect to which we see the UI.
+
+9. DYNAMIC ROUTING
+   --->using dynamic route eg - `restaurant/:resId` we can perform dynamic routing
+
+   Steps - a) make the component you want to render as a result of dynamic routing.
+
+   b) define the route in the browserRouter Api with path as `pathname/:<keyname>`
+
+   c)On the component in which you want to redirect or routing to happen cover it with LINK tag and make sure to send the specific key (id in this case) through which api will be called in the new component which pops up after rendering eg - in cards we did to={`listRestaurantMenu/${item.info.id}`}
+
+   d) Now in the new page a.k.a the component which comes due to routing check the data through `useParams` hook and perform whatever action you want. eg - api call to fetch the data.
+
+10. Behind the scenes LINK tag has `a tag` is there hence LINK is kind of wrapper on the `a tag`. With the help of LINK tag it helps react router to keep a track of it.

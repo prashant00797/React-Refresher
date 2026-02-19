@@ -1,16 +1,15 @@
 //learn about use effect hook
 import { useEffect, useState } from "react";
-import { BASE_URL, FILTER_LIST, URL_GET_LIST } from "./utils";
+import { BASE_URL, URL_GET_LIST } from "./utils";
 import Shimmer from "./Shimmer";
 import React from "react";
 import { Search } from "./Search";
+import { Link } from "react-router";
 
 const Card = () => {
   //use state variable always when data renders on state change
   const [cardData, setCardData] = useState([]);
   const [filteredData, setFilteredData] = useState(cardData);
-
-  console.log(filteredData);
 
   //effect
   useEffect(() => {
@@ -37,12 +36,17 @@ const Card = () => {
   return (
     <React.Fragment>
       <Search cardData={cardData} setFilteredData={setFilteredData} />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+        }}
+      >
         {filteredData.length === 0 ? (
           <Shimmer /> //conditional rendering
         ) : (
           filteredData.map((item) => (
-            <div
+            <Link
               key={item.info.id}
               style={{
                 backgroundColor: "lightcoral",
@@ -52,14 +56,18 @@ const Card = () => {
                 display: "grid",
                 margin: "1vmin",
                 padding: "3vmin",
+                listStyle: "none",
+                textDecoration: "none",
+                color: "black",
               }}
+              to={`listRestaurantMenu/${item.info.id}`}
             >
               <p>{item.info.name}</p>
               <p>{item.info.costForTwo}</p>
               <p>{item.info.locality}</p>
               <p>{item.info.cuisines.join(",")}</p>
               <p>{item.info.avgRating}</p>
-            </div>
+            </Link>
           ))
         )}
       </div>

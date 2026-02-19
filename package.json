@@ -14,13 +14,14 @@
   "author": "prashant",
   "type": "module",
   "scripts": {
-    "dev":"parcel src/index.html",
-    "build":"parcel build src/index.html",
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
     "test": "jest"
   },
   "dependencies": {
     "parcel": "^2.16.4",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "react-router": "^7.13.0"
   }
 }

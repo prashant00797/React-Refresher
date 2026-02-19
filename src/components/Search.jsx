@@ -21,16 +21,12 @@ export const Search = ({ cardData, setFilteredData }) => {
   };
 */
   const handleFilterData = () => {
-    console.log(searchText);
-
     //normal search query - revise not took help
     const filteredList = cardData.filter((item) =>
       item.info.name.toLowerCase().includes(searchText.toLowerCase()),
     );
-    console.log(filteredList);
 
     setFilteredData(filteredList);
-    // console.log(filteredList, search);
   };
 
   return (
