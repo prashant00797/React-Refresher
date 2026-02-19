@@ -10,3 +10,4 @@ export const infoList = [
 export const BASE_URL = "https://namastedev.com/api/v1/";
 export const URL_GET_LIST = "listRestaurants";
 export const FILTER_LIST = `listRestaurantMenu/`;
+export const GITHUB_USER = "https://api.github.com/users/prashant00797";

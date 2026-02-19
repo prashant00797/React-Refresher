@@ -7,6 +7,7 @@ import Card from "./components/Card";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import ErrorPath from "./components/Error";
 import DynamicCard from "./components/DynamicCard";
+import { Dummy } from "./components/Dummy";
 
 //creating routing tree
 const appRoutes = createBrowserRouter([
@@ -63,13 +64,13 @@ const appRoutes = createBrowserRouter([
         path: "/listRestaurantMenu/:id",
         element: <DynamicCard />,
       },
+      {
+        path: "/about",
+        element: <Dummy />,
+      },
     ],
   },
 ]);
 
 const root = createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={appRoutes}></RouterProvider>
-  </React.StrictMode>,
-);
+root.render(<RouterProvider router={appRoutes}></RouterProvider>);

@@ -50,6 +50,12 @@ const Navbar = () => {
         >
           Account
         </Link>
+        <Link
+          to={"/about"}
+          style={{ cursor: "pointer", textDecoration: "none", color: "black" }}
+        >
+          About
+        </Link>
       </ul>
     </nav>
   );
