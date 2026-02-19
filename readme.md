@@ -188,31 +188,31 @@ SOME IMPORTANT TERMS - see gpt created a chat + refernce react documentations
 
 ---> Approaches for loading a page =
 
-1. User Page loads -> make the api call -> render page
-2. User Page loads -> render the initial UI(UI like Shimmer) -> Make an API call -> Update
+1.  User Page loads -> make the api call -> render page
+2.  User Page loads -> render the initial UI(UI like Shimmer) -> Make an API call -> Update
 
 The second approach is better way as the user experience will be much better in that
 
-##### USE EFFECT HOOK
+## USE EFFECT HOOK
 
-1. The body component renders and after that the use effect hooks gets rendered. It consists of a callback function and an dependency array
+1.  The body component renders and after that the use effect hooks gets rendered. It consists of a callback function and an dependency array
 
-2. Hence to get the data for the first time after the component is rendered we use the useffect hook
-   .
-   .
-   .
-   .
-   .
+2.  Hence to get the data for the first time after the component is rendered we use the useffect hook
+    .
+    .
+    .
+    .
+    .
 
-   ---> Fetch api is given by the browser not js itself.
+---> Fetch api is given by the browser not js itself.
 
-3. Ours browser (say chrome) restricts or block us (localhost) from one origin to another origin i.e, calling an outside api from our localhost.
-4. Shimmer UI is a good practice of lazy loading.
-5. Concept of conditional rendering is used in shimmer UI
+3.  Ours browser (say chrome) restricts or block us (localhost) from one origin to another origin i.e, calling an outside api from our localhost.
+4.  Shimmer UI is a good practice of lazy loading.
+5.  Concept of conditional rendering is used in shimmer UI
 
-6. # const with useState and components
+6.  # const with useState and components
 
-   🔹 Why we use const?
+🔹 Why we use const?
 
 const prevents reassignment of the variable.
 
@@ -275,21 +275,20 @@ Component -> Function reference stays same -> Function execution & internal vari
    .
    .
 
-7) # SOME MORE POINTS OF USE EFFECT & USE STATE, ABOUT ROUTING - static & dynamic both
+7) ## SOME MORE POINTS OF USE EFFECT & USE STATE, ABOUT ROUTING - static & dynamic both
    1. Useffect runs after the component is rendered. The dependency array changes its behaviour.
       if [] is empty than it will run only once. if no dependency array then it will run every time the component renders. [statevar] if it has something than it will render when there is updation in the dependency array variable.
    2. Dont use ustate outside the body. Its used to create local state variable inside a function and always create on top since at the end the end of the day js executes line by line.
    3. Dont use conditional sentence like if/else or loops with useState and useEffect. Also dont declare them inside a separate function.
 
-#### ROUTING
-
-1. Install react router not react router dom and import from react router
-2. create approutes with the help of browser router which is an array of object taking mainly path, element, eroor element , children routes(if any)
-3. Use Router Provider now instead of the app component and pass the approutes to it with attribute routes = {appRoutes}
-4. errorElement is used to handle when / any path doesnt matches.
-5. useRouteEroor hook provided by router to get Error Response object which has more details about the error like status code, error message and all. Use it inside the error component
-6. Children routes are created inside the the parent route.
-7. Outlet helps in replacing the element when linked is click
+   ## ROUTING
+   1. Install react router not react router dom and import from react router
+   2. create approutes with the help of browser router which is an array of object taking mainly path, element, eroor element , children routes(if any)
+   3. Use Router Provider now instead of the app component and pass the approutes to it with attribute routes = {appRoutes}
+   4. errorElement is used to handle when / any path doesnt matches.
+   5. useRouteEroor hook provided by router to get Error Response object which has more details about the error like status code, error message and all. Use it inside the error component
+   6. Children routes are created inside the the parent route.
+   7. Outlet helps in replacing the element when linked is click
 
 FINAL STEPS
 🔹 React Router Sequence (Nested Routing)
@@ -398,26 +397,73 @@ App
 
 That’s the complete routing sequence — clean and correct.
 
-8. Router provider at root level as React context flows downward.So placing it at the top ensures:Every component inside the app can access routing.If you placed it lower: Only components inside that subtree would get routing.
-   .
-   .
-   .
-   .
+8.  Router provider at root level as React context flows downward.So placing it at the top ensures:Every component inside the app can access routing.If you placed it lower: Only components inside that subtree would get routing.
+    .
+    .
+    .
+    .
 
 #### SINGLE PAGE APPLICATION (SPA)
 
 --> Its basically the process of make a page not reload when routing occurs. It takes the help of CLIENT SIDE ROUTING.
 Routing can be of two types client side as above in which we just interchange among pages and can make network calls but without changing the entire page and another one is server side routing where an http request is made to the backend and an response comes in with respect to which we see the UI.
 
-9. DYNAMIC ROUTING
-   --->using dynamic route eg - `restaurant/:resId` we can perform dynamic routing
+9.  DYNAMIC ROUTING
+    --->using dynamic route eg - `restaurant/:resId` we can perform dynamic routing
 
-   Steps - a) make the component you want to render as a result of dynamic routing.
+Steps - a) make the component you want to render as a result of dynamic routing.
 
-   b) define the route in the browserRouter Api with path as `pathname/:<keyname>`
+b) define the route in the browserRouter Api with path as `pathname/:<keyname>`
 
-   c)On the component in which you want to redirect or routing to happen cover it with LINK tag and make sure to send the specific key (id in this case) through which api will be called in the new component which pops up after rendering eg - in cards we did to={`listRestaurantMenu/${item.info.id}`}
+c)On the component in which you want to redirect or routing to happen cover it with LINK tag and make sure to send the specific key (id in this case) through which api will be called in the new component which pops up after rendering eg - in cards we did to={`listRestaurantMenu/${item.info.id}`}
 
-   d) Now in the new page a.k.a the component which comes due to routing check the data through `useParams` hook and perform whatever action you want. eg - api call to fetch the data.
+d) Now in the new page a.k.a the component which comes due to routing check the data through `useParams` hook and perform whatever action you want. eg - api call to fetch the data.
 
 10. Behind the scenes LINK tag has `a tag` is there hence LINK is kind of wrapper on the `a tag`. With the help of LINK tag it helps react router to keep a track of it.
+
+.
+.
+.
+.
+.
+.
+
+8. ### CLASS BASED COMPONENTS
+
+   1.Normal javascript class that inherits property from React.component
+
+   2.render() fn is used to print the jsx
+
+   3.concept of super() i.e, calling parent class constructor is applied here too.
+   4.props are declared in the constructor class.
+
+   5.`this` is used to access any propoperty of the class.
+   Refer for in-depth - https://chatgpt.com/share/6997271e-9874-8001-a506-cdbe301f72ca
+
+   6.When we say we are loading a functional component its means we are invoking(mounting) the component and when we say we are loading a class based component that means we are creating an instance of that class.
+
+   6.A state variable is a single large object where we need to define all our state variables.
+   this.state = {...all state variables}
+   Also the update function also expects the update in same format that is an object.
+   this.setState({... state variables which we want to update in exact `key`:`action to do` pair}). inside a single setState update whatever state variables are there since react will compare only the ones which is update from the this.state object. 9. ## LIFE CYCLE METHODS IN CLASS BASE METHOD
+
+   --->React does not wait for API calls. It renders the component first. Since API calls are side effects, we place them inside or componentDidMount in class components so that they run after the component mounts, preventing unnecessary re-renders and performance issues.
+
+   # Life cycle method happens in batches render phase then commit phase. In render phase contructor is called first followed by the render function. This will happen in batches say 1 parent and 2 child so the process be like---
+
+   ## parent constructor->parent render()->child1 constructor->child1 render()->child2 constructor->child2 render.
+
+   # This ends the render phase now comes the commit phase where EXPENSIVE DOM MANIPULATION HAPPENS FIRST followed by life cyled methods like componentDidMount and all
+
+   ## DOM UPDATED ->child1 componentDidMount called->child2 componentDidMount called->parent componentDidMount called
+
+   # The batching takes place since DOM manipulaiton is expensive so better do all the contructor calling and render and then do dom updates
+
+   Refer - https://chatgpt.com/share/6997271e-9874-8001-a506-cdbe301f72ca
+   since more clear explanation plus comparison with useFffect which is slightly different and also for api update component did mount
+
+   Refer - https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/ for life cycle diagrams
+
+   # Never compare useffect = componentDidMount both are different
+
+   Note : Lec 8 resource video watch again if needed since lots of theory concepts
