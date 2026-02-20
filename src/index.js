@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 // import AppComponent from "./App"; // i am able to change the name since it was a default export
 import App from "./App"; // normal import
@@ -6,8 +6,10 @@ import Card from "./components/Card";
 //router imports
 import { createBrowserRouter, RouterProvider } from "react-router";
 import ErrorPath from "./components/Error";
-import DynamicCard from "./components/DynamicCard";
+// import DynamicCard from "./components/DynamicCard";
 import { Dummy } from "./components/Dummy";
+
+const LazyDynamicCard = lazy(() => import("./components/DynamicCard"));
 
 //creating routing tree
 const appRoutes = createBrowserRouter([
@@ -61,8 +63,12 @@ const appRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/listRestaurantMenu/:id",
-        element: <DynamicCard />,
+        path: "listRestaurantMenu/:id",
+        element: (
+          <Suspense fallback={<h1>...loading</h1>}>
+            <LazyDynamicCard />
+          </Suspense>
+        ),
       },
       {
         path: "/about",

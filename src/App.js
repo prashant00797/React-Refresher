@@ -4,7 +4,7 @@ import Filter from "./components/Filter";
 import { Iterator, Iterator2 } from "./components/Iterator";
 import { Toggle } from "./components/Toggle";
 import Navbar from "./components/Navbar";
-import { infoList } from "./components/utils";
+import { infoList } from "../src/utils/utils";
 
 const Title = () => <h1>React Refresher</h1>;
 
@@ -13,7 +13,7 @@ export const App = () => {
   const random = Math.random().toFixed(1);
 
   return (
-    <div>
+    <>
       <Navbar />
       <div>
         {/* <h1 style={{ backgroundColor: "red" }}>Test {random}</h1> */}
@@ -30,7 +30,7 @@ export const App = () => {
       {/* <Filter infoList={infoList} /> */}
       <Outlet />
       {/* Outlet -  Renders the matching child route of a parent route or nothing if no child route matches. */}
-    </div>
+    </>
   );
 };
 

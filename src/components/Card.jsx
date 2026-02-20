@@ -1,6 +1,6 @@
 //learn about use effect hook
 import { useEffect, useState } from "react";
-import { BASE_URL, URL_GET_LIST } from "./utils";
+import { BASE_URL, URL_GET_LIST } from "../utils/utils";
 import Shimmer from "./Shimmer";
 import React from "react";
 import { Search } from "./Search";

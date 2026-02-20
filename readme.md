@@ -428,42 +428,84 @@ d) Now in the new page a.k.a the component which comes due to routing check the 
 .
 .
 
-8. ### CLASS BASED COMPONENTS
+8.  ### CLASS BASED COMPONENTS
 
-   1.Normal javascript class that inherits property from React.component
+    1.Normal javascript class that inherits property from React.component
 
-   2.render() fn is used to print the jsx
+    2.render() fn is used to print the jsx
 
-   3.concept of super() i.e, calling parent class constructor is applied here too.
-   4.props are declared in the constructor class.
+    3.concept of super() i.e, calling parent class constructor is applied here too.
+    4.props are declared in the constructor class.
 
-   5.`this` is used to access any propoperty of the class.
-   Refer for in-depth - https://chatgpt.com/share/6997271e-9874-8001-a506-cdbe301f72ca
+    5.`this` is used to access any propoperty of the class.
+    Refer for in-depth - https://chatgpt.com/share/6997271e-9874-8001-a506-cdbe301f72ca
 
-   6.When we say we are loading a functional component its means we are invoking(mounting) the component and when we say we are loading a class based component that means we are creating an instance of that class.
+    6.When we say we are loading a functional component its means we are invoking(mounting) the component and when we say we are loading a class based component that means we are creating an instance of that class.
 
-   6.A state variable is a single large object where we need to define all our state variables.
-   this.state = {...all state variables}
-   Also the update function also expects the update in same format that is an object.
-   this.setState({... state variables which we want to update in exact `key`:`action to do` pair}). inside a single setState update whatever state variables are there since react will compare only the ones which is update from the this.state object. 9. ## LIFE CYCLE METHODS IN CLASS BASE METHOD
+    6.A state variable is a single large object where we need to define all our state variables.
+    this.state = {...all state variables}
+    Also the update function also expects the update in same format that is an object.
+    this.setState({... state variables which we want to update in exact `key`:`action to do` pair}). inside a single setState update whatever state variables are there since react will compare only the ones which is update from the this.state object. 9. ## LIFE CYCLE METHODS IN CLASS BASE METHOD
 
-   --->React does not wait for API calls. It renders the component first. Since API calls are side effects, we place them inside or componentDidMount in class components so that they run after the component mounts, preventing unnecessary re-renders and performance issues.
+    --->React does not wait for API calls. It renders the component first. Since API calls are side effects, we place them inside or componentDidMount in class components so that they run after the component mounts, preventing unnecessary re-renders and performance issues.
 
-   # Life cycle method happens in batches render phase then commit phase. In render phase contructor is called first followed by the render function. This will happen in batches say 1 parent and 2 child so the process be like---
+    # Life cycle method happens in batches render phase then commit phase. In render phase contructor is called first followed by the render function. This will happen in batches say 1 parent and 2 child so the process be like---
 
-   ## parent constructor->parent render()->child1 constructor->child1 render()->child2 constructor->child2 render.
+    ## parent constructor->parent render()->child1 constructor->child1 render()->child2 constructor->child2 render.
 
-   # This ends the render phase now comes the commit phase where EXPENSIVE DOM MANIPULATION HAPPENS FIRST followed by life cyled methods like componentDidMount and all
+    # This ends the render phase now comes the commit phase where EXPENSIVE DOM MANIPULATION HAPPENS FIRST followed by life cyled methods like componentDidMount and all
 
-   ## DOM UPDATED ->child1 componentDidMount called->child2 componentDidMount called->parent componentDidMount called
+    ## DOM UPDATED ->child1 componentDidMount called->child2 componentDidMount called->parent componentDidMount called
 
-   # The batching takes place since DOM manipulaiton is expensive so better do all the contructor calling and render and then do dom updates
+    # The batching takes place since DOM manipulaiton is expensive so better do all the contructor calling and render and then do dom updates
 
-   Refer - https://chatgpt.com/share/6997271e-9874-8001-a506-cdbe301f72ca
-   since more clear explanation plus comparison with useFffect which is slightly different and also for api update component did mount
+    Refer - https://chatgpt.com/share/6997271e-9874-8001-a506-cdbe301f72ca
+    since more clear explanation plus comparison with useFffect which is slightly different and also for api update component did mount
 
-   Refer - https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/ for life cycle diagrams
+    Refer - https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/ for life cycle diagrams
 
-   # Never compare useffect = componentDidMount both are different
+    # Never compare useffect = componentDidMount both are different
 
-   Note : Lec 8 resource video watch again if needed since lots of theory concepts
+    Note : Lec 8 resource video watch again if needed since lots of theory concepts
+
+9.  ### Single Responsibility Principle, custom hooks
+
+    -->A module / class / component should have only one reason to change.Not “only one function” — but one responsibility. that is known as single page responsibility principle make your code modular not putting everything in one place better to have a business logic layer for the ui separate , only ui focused layer sepearate and service or api calling layer seperate but the thing is its not mandotory but good to have.
+
+    ## Custom hooks
+
+    --> basically normal js function. See code for implementation.
+    --> naming should be started with `use` as a best practice
+
+    ## Dynamic bundling or code splitting or chunking or lazy loading or ondemand loading or dynamic import
+
+    Dynamic Import (JS feature)
+    ↓
+    Code Splitting (bundler technique)
+    ↓
+    Chunks generated
+    ↓
+    Lazy Loading (React usage)
+    ↓
+    On-Demand Loading (business term)
+    🚀 In Modern React (React 18+ Standard Way)
+
+    --->Use:
+
+          -->React.lazy
+
+          -->Suspense
+
+          -->Route-based splitting (React Router)
+
+          -->Dynamic import()
+
+          --->Example (Route level splitting):
+
+          --->const Restaurant = lazy(() => import("./Restaurant"));
+
+          This is industry standard.
+
+--?=>Code splitting is the technique, dynamic import is the mechanism, chunks are the result, and lazy loading/on-demand loading is the usage pattern in the UI. There is more type in which it can be loaded.
+
+refer - https://chatgpt.com/share/69982d46-3ec0-8001-a847-5cf5ef037c5e - for the above topic

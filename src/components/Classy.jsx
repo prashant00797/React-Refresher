@@ -1,6 +1,6 @@
 //for understanding class base components
 import React from "react";
-import { GITHUB_USER } from "./utils";
+import { GITHUB_USER } from "../utils/utils";
 
 class Classy extends React.Component {
   constructor(props) {

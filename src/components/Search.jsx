@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BASE_URL, FILTER_LIST } from "./utils";
+import { BASE_URL, FILTER_LIST } from "../utils/utils";
 
 export const Search = ({ cardData, setFilteredData }) => {
   const [searchText, setSearchText] = useState("");
