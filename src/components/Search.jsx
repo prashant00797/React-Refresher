@@ -31,13 +31,23 @@ export const Search = ({ cardData, setFilteredData }) => {
 
   return (
     <div>
-      <label htmlFor="search">Search</label>
+      <label htmlFor="search" className="text-1 ml-2 pr-6">
+        Search
+      </label>
       <input
+        className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm"
         type="text"
         value={searchText}
+        id="search"
+        name="search"
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <button onClick={handleFilterData}>Search</button>
+      <button
+        className="bg-blue-700 text-white rounded-2xl w-20 h-10 ml-5"
+        onClick={handleFilterData}
+      >
+        Search
+      </button>
     </div>
   );
 };
