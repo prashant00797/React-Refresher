@@ -6,8 +6,10 @@ import { BASE_URL, FILTER_LIST } from "../utils/utils";
 import Shimmer from "./Shimmer";
 import { useFetchData } from "../utils/useFetchData";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
+import AccordionCard from "./AccordionCard";
 
 const DynamicCard = () => {
+  const [title, setTitle] = useState("");
   const { id } = useParams();
 
   /* 
@@ -33,9 +35,8 @@ const DynamicCard = () => {
 
   */
 
-  const resDetails = useFetchData(id);
+  const { overallData, groupedData } = useFetchData(id);
   const status = useOnlineStatus();
-  // console.log(status);
 
   if (status === false) return <div>Opps connection lost</div>;
   /* the above code is not good basically this 
@@ -43,11 +44,26 @@ const DynamicCard = () => {
    and a separate component must be loaded in case of network failure 
    rather than modifying shimmer itself */
 
-  return Object.keys(resDetails).length === 0 ? (
-    <Shimmer />
-  ) : (
+  return (
     <div>
-      <h2>{`Just use this data to populate ${JSON.stringify(resDetails)}`}</h2>
+      <div>
+        <p>This is the main restaurant data: {JSON.stringify(overallData)}</p>
+        {groupedData.length === 0 ? (
+          <Shimmer />
+        ) : (
+          groupedData.map((item) => (
+            <AccordionCard
+              key={item.title}
+              groupedData={item}
+              conditionForCollapse={item.title === title} // important condition for opening and close
+              setCollapse={
+                () =>
+                  item.title === title ? setTitle("") : setTitle(item.title) // important condtion for toggling or resetting the value
+              }
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 };

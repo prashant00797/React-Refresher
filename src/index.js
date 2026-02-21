@@ -13,6 +13,7 @@ import TailwindContainer from "./components/TailwindContainer";
 //importing index.css for tailwind
 import "./index.css";
 import CardBody from "./components/CardBody";
+import Shimmer from "./components/Shimmer";
 
 //lazy loading a component
 const LazyDynamicCard = lazy(() => import("./components/DynamicCard"));
@@ -57,13 +58,7 @@ const appRoutes = createBrowserRouter([
       {
         path: "account",
         element: (
-          <div
-          // style={{
-          //   backgroundColor: "grey",
-          //   width: "100px",
-          //   height: "100px",
-          // }}
-          >
+          <div>
             <TailwindContainer /> {/* Testing tailwind in these route */}
           </div>
         ),
@@ -71,7 +66,7 @@ const appRoutes = createBrowserRouter([
       {
         path: "listRestaurantMenu/:id",
         element: (
-          <Suspense fallback={<h1>...loading</h1>}>
+          <Suspense fallback={<Shimmer />}>
             <LazyDynamicCard />
           </Suspense>
         ),

@@ -1,6 +1,7 @@
 //for understanding class base components
 import React from "react";
 import { GITHUB_USER } from "../utils/utils";
+import UserContext from "../context/userContext";
 
 class Classy extends React.Component {
   constructor(props) {
@@ -51,9 +52,14 @@ class Classy extends React.Component {
               count: this.state.count + 1,
             })
           }
+          className="bg-blue-700 text-white rounded-2xl w-20 h-10 ml-5"
         >
           Click
         </button>
+        {/* consuming context api in class based component */}
+        <UserContext.Consumer>
+          {(data) => <h1>{data.loggedInUser}</h1>}
+        </UserContext.Consumer>
       </div>
     );
   }

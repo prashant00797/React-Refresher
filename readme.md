@@ -518,14 +518,41 @@ refer - https://chatgpt.com/share/69982d46-3ec0-8001-a847-5cf5ef037c5e - for the
 
 10. # STYLING
 
-    -->css , scss/sass , chakra ui , material ui, bootstrap, ant design , tailwind.
+        -->css , scss/sass , chakra ui , material ui, bootstrap, ant design , tailwind.
 
-    # INSTALLING TAILWIND WITH PARCEL
-    1. install tailwind/postcss
-    2. create a post css config
-    3. import @tailwindcss in a global index.css file. this is basically the main configuration come overall css file
-    4. import it the index.js file with just path or also we can inject style sheet in index.html but not recommended.
+        # INSTALLING TAILWIND WITH PARCEL
+        1. install tailwind/postcss
+        2. create a post css config
+        3. import @tailwindcss in a global index.css file. this is basically the main configuration come overall css file
+        4. import it the index.js file with just path or also we can inject style sheet in index.html but not recommended.
 
-    --> https://chatgpt.com/share/699870f3-6708-8001-a5b8-f8efdd379597 - postcss basically Reads your CSS file . Runs plugins (like tailwindcss) Transforms your CSS Outputs final CSS
+        --> https://chatgpt.com/share/699870f3-6708-8001-a5b8-f8efdd379597 - postcss basically Reads your CSS file . Runs plugins (like tailwindcss) Transforms your CSS Outputs final CSS
 
-    --> it never ship unused css. only what we use gets shipped into the final bundle
+        --> it never ship unused css. only what we use gets shipped into the final bundle
+
+    .
+    .
+    .
+    .
+
+11. # All About managing the data efficiently using different techniques like HOC, controlled vs un-controlled component, lifting the state up, Props drilling, React Context.
+
+        1. The data layer is synced up with the UI layer managing the data layer is the most important part.
+
+        ### HOC
+        2. A wrapper pure function which takes a component and returns a new component with enhaced features.
+        3. The HOC runs once to create a new component. The returned function runs later when React renders.
+           The flow of withPromoted HOC - At first the hoc component is created. It simply takes a component and returns a new component. So in my code its takes at first component cardUI and returns card UI with a prop isVeg. So step one creation of hoc. Step 2 is creating a wrapper component i.e, hoc + cardUI i.e, `const EnhancedCard = withPromoted(CardUI)`. Now during maping we just create a conditional statement that if the item contains veg as true boolean value we will enter the Enhanced Card with a card wrapped with CardUI if not we will render the normal UI and we return the it as single Component by passing the props key for map and item the actual Props.Now suppose is veg is present so HOC conditional component that is enhanced card will be render inside hoc component - it will get component argument as the component and in return statement since its again return a function in it it will get props as item which we have sent in the `<Component/>` from card body when react renders. Now it checks from props about the condition and if true it sents an isVeg property to CardUI body along with the other props. The card Ui body recieves the props and renders it.
+
+        ### Lifting the state up
+        4. Creating the states in parents and passing them down to the children is termed as lifting the state up. When we control the child with states declared in parent with term the child as `Controlled Component`. In the code we controlled the accordion from the parent container `Dyanmic Card` and set two condition - 1) which sets a boolean value for the accordion to be true or false , which can be any value index or id or anything since at first everything will be null or empty and then at first click whatever we set its gonna hold that value and compare from the next time 2) send the the updater function into the accordion to handle the click basically using callback concept.
+
+        NOTE - WHILE PREPARING SUCH COMPONENT ALWAYS SEPERATE THE UI AND REFRAIN FROM WRITING THE LOGIC INSIDE THE MAP AS IT WILL APPLY TO ALL. WE WANT SEPARATE INSTANCES TO BE CREATED AND HANDLING THEM EVEN IF WE CONTROL FROM PARENT OR WE ARE CREATING AN `UNCONTROLLED COMPONENT` AND CONTROLLING FROM CHILD ITSELF. 5. Props drilling is basically sends props from parent to child in deep nested manner. Its a bad practice if all the data is not needed and we need some kind of global data whihc can be accessed by any component and hence context api and other libraries such as redux helps.
+        6. Context api by react helps in creating a global context.
+           --> create a context by first creating a variable and setting it with `createContext`. By default any value can be setup in in and later can be used.
+           ---> to use it use `useContext` hook and extract data form it by inserting the context created eg - `const <data> = useContext(<Context created>)` for `functional components` and for class components import the context and use it as a `html` tag and add `.Consumer` to consume the value inside the tag with and `{callback function and the arguments of the callback has the context data}`.
+           --> Similarly `<CONTEXT.PROVIDE>` is used to provide value to child components incase we are updating the `context value` with data manupulations. syntax - `<Context.Provide value={<final manupulated data>}`
+
+        # THIS TECHNIQUES WERE VERY IMPORTANT AND NEEDS PRACTICE REFER TO VIDEO RESOURCE AND GPT QUERIES
+
+    NOTE : ALWAYS CHECK OR HANDLE EMPTY [] OR {}. If not it breaks the UI

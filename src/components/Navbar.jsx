@@ -1,9 +1,16 @@
 //Routing Logic + checking custom hooks
 import { Link } from "react-router";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
+import UserContext from "../context/userContext";
+import { useContext } from "react";
 
 const Navbar = () => {
+  //custom hook
   const status = useOnlineStatus();
+
+  //just using usercontext here and there to its effect
+  const { loggedInUser } = useContext(UserContext);
+
   return (
     <nav
       style={{
@@ -11,7 +18,7 @@ const Navbar = () => {
         justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: "beige",
-        height: "5vmin",
+        height: "3rem",
         borderRadius: "1vmin",
         padding: "0 1vmin",
         marginBottom: "1vmin",
@@ -32,7 +39,12 @@ const Navbar = () => {
           gap: "3vmin",
         }}
       >
+        {/* just using usercontext here and there to its effect */}
+        <li>{loggedInUser} </li>
+
+        {/* custom hook use below */}
         <li>Online Status : {status ? "🟢" : "😡"} </li>
+
         <Link
           to={"/deals"}
           style={{

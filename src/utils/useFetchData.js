@@ -3,7 +3,10 @@ import { BASE_URL, FILTER_LIST } from "./utils";
 import { useEffect, useState } from "react";
 
 export const useFetchData = (id) => {
-  const [apiData, setApiData] = useState({});
+  const [apiData, setApiData] = useState({
+    overallData: {},
+    groupedData: [],
+  });
 
   useEffect(() => {
     handleCardDetails();
@@ -15,10 +18,23 @@ export const useFetchData = (id) => {
     ).json();
 
     //remember this type of chaining
-    const filteredRestaurantData = data?.cards.find(
+    const _restaurantOverallData = data?.cards.find(
       (item) => item?.card?.card?.info,
     )?.card?.card?.info;
-    setApiData(filteredRestaurantData);
+
+    //use ?. condtional chaining to not through error
+    //Boolean removes undefined, null, false, 0 or ""
+    const _restaurantCategoryData = data?.cards
+      .find((item) => item?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+      ?.groupedCard?.cardGroupMap?.REGULAR?.cards.map(
+        (item) => item?.card?.card,
+      )
+      .filter(Boolean); // this filter just checks for the map value fetched out is true or not if it finds any value as undefined or null it wont add.
+
+    setApiData({
+      overallData: _restaurantOverallData,
+      groupedData: _restaurantCategoryData,
+    });
   };
 
   return apiData;

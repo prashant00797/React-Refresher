@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { BASE_URL, FILTER_LIST } from "../utils/utils";
+import UserContext from "../context/userContext";
 
 export const Search = ({ cardData, setFilteredData }) => {
   const [searchText, setSearchText] = useState("");
@@ -29,6 +30,9 @@ export const Search = ({ cardData, setFilteredData }) => {
     setFilteredData(filteredList);
   };
 
+  //test context api
+  const { loggedInUser, setfName } = useContext(UserContext);
+
   return (
     <div>
       <label htmlFor="search" className="text-1 ml-2 pr-6">
@@ -48,6 +52,20 @@ export const Search = ({ cardData, setFilteredData }) => {
       >
         Search
       </button>
+
+      {/* Start - to test context api */}
+      <label htmlFor="searchForContext" className="text-1 ml-2 pr-6">
+        Test Context
+      </label>
+      <input
+        className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm"
+        type="text"
+        value={loggedInUser}
+        id="contextSearch"
+        name="contextSearch"
+        onChange={(e) => setfName(e.target.value)}
+      />
+      {/* End */}
     </div>
   );
 };
