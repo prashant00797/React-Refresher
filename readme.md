@@ -509,3 +509,23 @@ d) Now in the new page a.k.a the component which comes due to routing check the 
 --?=>Code splitting is the technique, dynamic import is the mechanism, chunks are the result, and lazy loading/on-demand loading is the usage pattern in the UI. There is more type in which it can be loaded.
 
 refer - https://chatgpt.com/share/69982d46-3ec0-8001-a847-5cf5ef037c5e - for the above topic
+.
+.
+.
+.
+.
+.
+
+10. # STYLING
+
+    -->css , scss/sass , chakra ui , material ui, bootstrap, ant design , tailwind.
+
+    # INSTALLING TAILWIND WITH PARCEL
+    1. install tailwind/postcss
+    2. create a post css config
+    3. import @tailwindcss in a global index.css file. this is basically the main configuration come overall css file
+    4. import it the index.js file with just path or also we can inject style sheet in index.html but not recommended.
+
+    --> https://chatgpt.com/share/699870f3-6708-8001-a5b8-f8efdd379597 - postcss basically Reads your CSS file . Runs plugins (like tailwindcss) Transforms your CSS Outputs final CSS
+
+    --> it never ship unused css. only what we use gets shipped into the final bundle

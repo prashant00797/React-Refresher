@@ -8,7 +8,12 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import ErrorPath from "./components/Error";
 // import DynamicCard from "./components/DynamicCard";
 import { Dummy } from "./components/Dummy";
+import TailwindContainer from "./components/TailwindContainer";
 
+//importing index.css for tailwind
+import "./index.css";
+
+//lazy loading a component
 const LazyDynamicCard = lazy(() => import("./components/DynamicCard"));
 
 //creating routing tree
@@ -52,13 +57,13 @@ const appRoutes = createBrowserRouter([
         path: "account",
         element: (
           <div
-            style={{
-              backgroundColor: "grey",
-              width: "100px",
-              height: "100px",
-            }}
+          // style={{
+          //   backgroundColor: "grey",
+          //   width: "100px",
+          //   height: "100px",
+          // }}
           >
-            Account
+            <TailwindContainer /> {/* Testing tailwind in these route */}
           </div>
         ),
       },

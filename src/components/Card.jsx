@@ -50,8 +50,6 @@ const Card = () => {
               key={item.info.id}
               style={{
                 backgroundColor: "lightcoral",
-                width: "50vmin",
-                height: "70vmin",
                 borderRadius: "2vmin",
                 display: "grid",
                 margin: "1vmin",
