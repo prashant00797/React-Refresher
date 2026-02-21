@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 // import AppComponent from "./App"; // i am able to change the name since it was a default export
 import App from "./App"; // normal import
-import Card from "./components/Card";
+
 //router imports
 import { createBrowserRouter, RouterProvider } from "react-router";
 import ErrorPath from "./components/Error";
@@ -12,6 +12,7 @@ import TailwindContainer from "./components/TailwindContainer";
 
 //importing index.css for tailwind
 import "./index.css";
+import CardBody from "./components/CardBody";
 
 //lazy loading a component
 const LazyDynamicCard = lazy(() => import("./components/DynamicCard"));
@@ -25,7 +26,7 @@ const appRoutes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Card />,
+        element: <CardBody />,
       },
       {
         path: "deals",

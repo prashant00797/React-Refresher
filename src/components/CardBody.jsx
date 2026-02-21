@@ -4,9 +4,13 @@ import { BASE_URL, URL_GET_LIST } from "../utils/utils";
 import Shimmer from "./Shimmer";
 import React from "react";
 import { Search } from "./Search";
-import { Link } from "react-router";
+import { withPromoted } from "./hoc/withPromoted";
+import CardUI from "./CardUI";
 
-const Card = () => {
+//Wrapping HOC
+const EnhancedCard = withPromoted(CardUI);
+
+const CardBody = () => {
   //use state variable always when data renders on state change
   const [cardData, setCardData] = useState([]);
   const [filteredData, setFilteredData] = useState(cardData);
@@ -15,6 +19,13 @@ const Card = () => {
   useEffect(() => {
     fetchdata();
   }, []);
+
+  /*
+  const EnhancedCard = withPromoted(CardBody); 
+    dont wrap the whole container body it will run 
+    the whole card body is veg check = no of cards present 
+    so re-render cycle wrap only with UI  
+  */
 
   const fetchdata = async () => {
     const { data } = await (await fetch(BASE_URL + URL_GET_LIST)).json();
@@ -40,37 +51,20 @@ const Card = () => {
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr",
+          gap: "1vmin",
         }}
       >
         {filteredData.length === 0 ? (
           <Shimmer /> //conditional rendering
         ) : (
-          filteredData.map((item) => (
-            <Link
-              key={item.info.id}
-              style={{
-                backgroundColor: "lightcoral",
-                borderRadius: "2vmin",
-                display: "grid",
-                margin: "1vmin",
-                padding: "3vmin",
-                listStyle: "none",
-                textDecoration: "none",
-                color: "black",
-              }}
-              to={`listRestaurantMenu/${item.info.id}`}
-            >
-              <p>{item.info.name}</p>
-              <p>{item.info.costForTwo}</p>
-              <p>{item.info.locality}</p>
-              <p>{item.info.cuisines.join(",")}</p>
-              <p>{item.info.avgRating}</p>
-            </Link>
-          ))
+          filteredData.map((item) => {
+            const Component = item.info.veg ? EnhancedCard : CardUI;
+            return <Component key={item.info.id} item={item} />;
+          })
         )}
       </div>
     </React.Fragment>
   );
 };
 
-export default Card;
+export default CardBody;
