@@ -607,6 +607,22 @@ refer - https://chatgpt.com/share/69982d46-3ec0-8001-a847-5cf5ef037c5e - for the
 
     10. Mutating the object is very necessary in redux. state = [] wont directly change the variable it will change its reference we need to do state.items.length = 0 that is `this`.items.length = 0 to make state = []. Hence, In Redux Toolkit, you can mutate state properties because Immer handles immutability internally. Do not reassign state = newState; `either mutate properties or return a new state object`.
         .
-    11. `console.log(current(state))` to log inside an action in rtk. import current from rtk
+    11. `console.log(current(state))` to log inside an action in rtk. import current from rtk 12. rtk query(less imp), redux dev tool(imp) - read
 
-    12. rtk query(less imp), redux dev tool(imp) - read
+    .
+    .
+    .
+    .
+
+13. # TESTING - JEST
+    1. Types of testing for developers - unit testing, integration testing, end to end testing.
+    2. Unit testing - testing component in isolation. Integration testing - testing a particular flow eg - search functionality. As a developer unit and integration is most imp. apart from these two manual testing is compulsory.
+    3. React Testing Library is based on DOM testing library where DOM acts as wrapper. RTL provides utilities to render and test React components.
+    4. Apart from it we need Jest a test runner.
+    5. Steps -
+       i) install RTL
+       ii) install Jest
+       iii) install babel dependencies since our project uses babel in babel.config.js. remeber to make the extension as .cjs since we are using the type="module" to treat it as common js we need to rename it as .cjs
+       iv) Now since our project uses parcel which has uses babel behind and we have also ourselves install babel dependencies. This will create a clash bewtween the dependencies. Henec, To disable Babel transpilation in Parcel, override the default Parcel config for JavaScript to exclude @parcel/transformer-babel we add .parcelrc file and a json code.This will allow other tools to continue using your Babel config, but disable Babel transpilation in Parcel. simply use our babel configuration and not parcels own.
+       v) npm init jest@latest to prepare the script file.
+       vi) install jsdom from RTL docs. jsdom is kind of a browser like environment which is used to run the test scripts.
