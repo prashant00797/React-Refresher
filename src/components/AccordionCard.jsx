@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import AccordionItem from "./AccordionItem";
 
 const AccordionCard = ({
@@ -11,19 +11,23 @@ const AccordionCard = ({
 
   const { title, itemCards } = groupedData;
 
-  const handleOpen = () => {
+  const handleOpen = (e) => {
+    e.stopPropagation();
     setCollapse();
   };
 
+  //extracting array from nested objs
+  const accordData = itemCards.map((i) => i.card.info);
+
   return (
     <React.Fragment>
-      <div onClick={() => handleOpen()}>
+      <div onClick={(e) => handleOpen(e)}>
         <div className="bg-amber-500 rounded h-10 mb-1.5 cursor-pointer pl-1.5">
-          <p className="text-2xl">{title}</p>
+          <p className="text-2xl">{`${title} (${groupedData.itemCards.length})👇🏼`}</p>
         </div>
         <div>
           {conditionForCollapse && (
-            <AccordionItem key={title} item={itemCards} />
+            <AccordionItem key={title} item={accordData} />
           )}
         </div>
       </div>

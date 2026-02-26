@@ -14,6 +14,7 @@ import TailwindContainer from "./components/TailwindContainer";
 import "./index.css";
 import CardBody from "./components/CardBody";
 import Shimmer from "./components/Shimmer";
+import Wishlist from "./components/Wishlist";
 
 //lazy loading a component
 const LazyDynamicCard = lazy(() => import("./components/DynamicCard"));
@@ -43,17 +44,7 @@ const appRoutes = createBrowserRouter([
       },
       {
         path: "wishlist",
-        element: (
-          <div
-            style={{
-              backgroundColor: "blueviolet",
-              width: "100px",
-              height: "100px",
-            }}
-          >
-            Wishlist
-          </div>
-        ),
+        element: <Wishlist />,
       },
       {
         path: "account",

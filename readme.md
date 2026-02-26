@@ -556,3 +556,57 @@ refer - https://chatgpt.com/share/69982d46-3ec0-8001-a847-5cf5ef037c5e - for the
         # THIS TECHNIQUES WERE VERY IMPORTANT AND NEEDS PRACTICE REFER TO VIDEO RESOURCE AND GPT QUERIES
 
     NOTE : ALWAYS CHECK OR HANDLE EMPTY [] OR {}. If not it breaks the UI
+
+12. # STATE MANAGEMENT USING REDUX TOOLKIT.
+    1.  A global store is present which is kind of a big js object.
+    2.  Inside that we create `slices` of the functionality we want eg - a login slice, an authentication slice. Bascially small part of data which we need globally.
+    3.  WRITE DATA : The `slices` can be updated directly. To update a slice we `dispatch an action` which calls the `reducer` function which updates the particular slice we are targeting in the global redux store.
+    4.  READ DATA : We use a `selector` to read from the `slices` and then the `selector` than updates the `data` to the respective component which wants to read the `data` of that particular `slice`. This is called `the component is SUBSCRIBED to the store`.
+
+                    ┌───────────────┐
+                │   Component   │
+                │ (Add Button)  │
+                └───────┬───────┘
+                        │ dispatch()
+                        ▼
+                ┌───────────────┐
+                │    Action     │
+                └───────┬───────┘
+                        ▼
+                ┌───────────────┐
+                │    Reducer    │
+                └───────┬───────┘
+                        ▼
+                ┌───────────────┐
+                │     Store     │
+                └───────┬───────┘
+                        │ subscribe()
+                        ▼
+                ┌───────────────┐
+                │  useSelector  │
+                └───────┬───────┘
+                        ▼
+                ┌───────────────┐
+                │  Cart UI      │
+                └───────────────┘
+
+    5.  Steps - install reduxjs/toolkit and react-redux - build store - connect to store to app - create slice (cart slice) - dispatch(action) - use selctor to view data
+    6.  `configuring store` is redux job hence we import it from `reduxjs/toolkit` but providing it to our react components is reacts job hence we import `provider` from `react-redux`
+
+    7.  Always subscribe to the right portion of the store i.e, `const store = useSelector((store)=>store)` and then `const cartItems = store.cart.items`. This is a very bad practice since a component shouldnt be subscribed to the entire store its should be subscribed to the specific slice which it requires since it will keep on updating when the entire store gets update whereas we dont want the entire store data we want a slice of that. best practice `const cartItems = useSelector((state) => state.wishList.item)`
+
+    8.  `reducer` one big reducer in appStore.js which expects an object of slice reducers and `reducers` is for multiple small `reducer` in a particular slice but while importing from that particular slice we import it as a single `cartSlice.reducer`
+
+    9.  In older redux `mutating state was prohibited and returning the new copied state was mandotory` and now in redux toolkit its `compulsory to mutate the state and returning is not mandatory`
+        eg - older redux = let newState = [...state]
+        newstate.item.push(action.payload)
+        return newState
+
+        rtk = state.item.push(action.payload)
+        but behind the scene redux toolkit - still uses vanilla redux and doing all the copying stuff as like older redux but removed the pain of developers from doing that step. `Immer -  https://immerjs.github.io/immer/` librabry helps RTK to do so.
+
+    10. Mutating the object is very necessary in redux. state = [] wont directly change the variable it will change its reference we need to do state.items.length = 0 that is `this`.items.length = 0 to make state = []. Hence, In Redux Toolkit, you can mutate state properties because Immer handles immutability internally. Do not reassign state = newState; `either mutate properties or return a new state object`.
+        .
+    11. `console.log(current(state))` to log inside an action in rtk. import current from rtk
+
+    12. rtk query(less imp), redux dev tool(imp) - read

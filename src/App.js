@@ -8,6 +8,10 @@ import { infoList } from "../src/utils/utils";
 import UserContext from "./context/userContext";
 import { useEffect, useState } from "react";
 
+//react redux
+import { Provider } from "react-redux";
+import appStore from "./store/appStore";
+
 const Title = () => <h1>React Refresher</h1>;
 
 export const App = () => {
@@ -24,26 +28,29 @@ export const App = () => {
   }, []);
   return (
     <>
-      <Navbar />
-      <div>
-        {/* <h1 style={{ backgroundColor: "red" }}>Test {random}</h1> */}
-        {/* <Toggle /> */}
-      </div>
-      {/* {Title()} Ultimate its a js arrow function and we are invoking it */}
-      {/* <Title></Title> All this three syntax mean the same  */}
-      {/* <Title /> */}
-      {/* <Dummy name={"check props"} arr={arr} /> */}
-      {/* understanding how props are sent in Dummy Component */}
-      {/* <Iterator infoList={infoList} /> */}
-      {/* Understanding the role of map in rendering multiple data in an single component - Iterator Js */}
-      {/* <Iterator2 infoList={infoList} /> */}
-      {/* <Filter infoList={infoList} /> */}
+      {/*  Wrapping entiner component using React-redux provider */}
+      <Provider store={appStore}>
+        <Navbar />
+        <div>
+          {/* <h1 style={{ backgroundColor: "red" }}>Test {random}</h1> */}
+          {/* <Toggle /> */}
+        </div>
+        {/* {Title()} Ultimate its a js arrow function and we are invoking it */}
+        {/* <Title></Title> All this three syntax mean the same  */}
+        {/* <Title /> */}
+        {/* <Dummy name={"check props"} arr={arr} /> */}
+        {/* understanding how props are sent in Dummy Component */}
+        {/* <Iterator infoList={infoList} /> */}
+        {/* Understanding the role of map in rendering multiple data in an single component - Iterator Js */}
+        {/* <Iterator2 infoList={infoList} /> */}
+        {/* <Filter infoList={infoList} /> */}
 
-      {/* I PUT IT HERE SINCE I DONT WANT MY NAV BAR TO GET THE UPDATED PROVIDER VALUE REST ALL CHILDRENS WILL GET UNDER THE APP */}
-      <UserContext.Provider value={{ loggedInUser: fname, setfName }}>
-        <Outlet />
-        {/* Outlet -  Renders the matching child route of a parent route or nothing if no child route matches. */}
-      </UserContext.Provider>
+        {/* I PUT IT HERE SINCE I DONT WANT MY NAV BAR TO GET THE UPDATED PROVIDER VALUE REST ALL CHILDRENS WILL GET UNDER THE APP */}
+        <UserContext.Provider value={{ loggedInUser: fname, setfName }}>
+          <Outlet />
+          {/* Outlet -  Renders the matching child route of a parent route or nothing if no child route matches. */}
+        </UserContext.Provider>
+      </Provider>
     </>
   );
 };

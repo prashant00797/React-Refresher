@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
 import UserContext from "../context/userContext";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   //custom hook
@@ -10,6 +11,9 @@ const Navbar = () => {
 
   //just using usercontext here and there to its effect
   const { loggedInUser } = useContext(UserContext);
+
+  //using selector to fetch from wishListSlice of redux = subscribing store using selector
+  const wishListItems = useSelector((store) => store.wishList.item);
 
   return (
     <nav
@@ -65,7 +69,7 @@ const Navbar = () => {
           }}
           to={"/wishlist"}
         >
-          Wishlist
+          {`Wishlist ${wishListItems.length}`}
         </Link>
         <Link
           to={"/account"}
